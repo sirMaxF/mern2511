@@ -1,1 +1,2 @@
-export { userModel } from './User.js' 
+export { userModel } from './User.js'
+export { movieModel } from './Movie.js' 

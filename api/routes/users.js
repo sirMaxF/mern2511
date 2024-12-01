@@ -74,19 +74,15 @@ routerUser.get('/:id', async (req, res) => {
     }
 })
 
-// создание пользователя
+// создание статистики
 routerUser.get('/stat/:id', async (req, res) => {
     try {
         const users = await userModel.aggregate([{
-            $match: {
-                _id: mongoose.Types.ObjectId(req.id)
-            },
-            $project: {
-                "_id": "_id",
+            $group: {
+                '_id': "$isAdmin",
+                count: { $sum: 1 }
             }
-        }]).
-            exec();;
-
+        }])
         return res.status(200).json(users);
     } catch (error) {
         return res.status(500).json(error)
