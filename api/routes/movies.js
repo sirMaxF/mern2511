@@ -38,3 +38,55 @@ routerMovie.put('/:id', verifyMiddleware, async (req, res) => {
         res.status(403).json('Позволено только админу')
     }
 })
+
+// удаление 
+
+routerMovie.delete('/:id', verifyMiddleware, async (req, res) => {
+    if (req.user.isAdmin) {
+        try {
+            const delMovie = await movieModel.findByIdAndDelete(req.params.id);
+            res.status(200).json(delMovie);
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    }
+
+    else {
+        res.status(403).json('Позволено только админу')
+    }
+})
+
+
+// получение всех записей
+
+routerMovie.get('/', async (req, res) {
+    if (req.user.isAdmin) {
+        try {
+            const movies = await movieModel.find();
+            res.status(200).json(movies);
+        } catch (error) {
+
+        }
+    }
+
+    else {
+        res.status(403).json('Позволено только админу')
+    }
+})
+
+// получение одной записи
+
+routerMovie.get('/:id', async (req, res) {
+    if (req.user.isAdmin) {
+        try {
+            const movieOne = await movieModel.findById(req.params.id);
+            res.status(200).json(movieOne);
+        } catch (error) {
+
+        }
+    }
+
+    else {
+        res.status(403).json('Позволено только админу')
+    }
+})
