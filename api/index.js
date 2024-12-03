@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
-import { routerAuth, routerUser } from './routes/index.js';
+import { routerAuth, routerMovie, routerUser } from './routes/index.js';
 
 dotenv.config();
 
@@ -14,6 +14,7 @@ app.use(express.json())
 
 app.use('/api/auth/', routerAuth);
 app.use('/api/users/', routerUser)
+app.use('/api/movie/', routerMovie)
 
 app.listen('8800', () => {
     console.log('Получилось')
