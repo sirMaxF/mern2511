@@ -1,14 +1,15 @@
 'use client'
 
 import Image from "next/image";
-import { Main } from "./components";
+import { List, Main } from "./components";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { list } from "postcss";
 
 export default function Home() {
   const [type, setType] = useState('');
   const [genre, setGenre] = useState('');
-  const [List, setList] = useState('');
+  const [lists, setList] = useState([]);
 
   let url = new URL('http://localhost:8800/api/lists');
 
@@ -25,6 +26,7 @@ export default function Home() {
         });
 
         const result = await response.json();
+        setList(result)
         console.log(result)
       } catch (error) {
         console.log(error)
@@ -38,6 +40,13 @@ export default function Home() {
 
 
   return (
-    <Main />
+    <>
+      <Main />
+      <div className="flex flex-wrap gap-5">
+        {lists.map(list => (
+          <List key={list.id} list={list} />
+        ))}
+      </div>
+    </>
   );
 }

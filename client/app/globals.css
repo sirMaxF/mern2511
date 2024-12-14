@@ -5,3 +5,7 @@
 .menu {
   @apply w-full text-xl flex gap-3;
 }
+
+.menu__item {
+  @apply hover:text-slate-400 cursor-pointer;
+}
