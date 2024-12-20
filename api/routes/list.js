@@ -59,7 +59,8 @@ routerList.delete('/:id', verifyMiddleware, async (req, res) => {
 
 // получение всех записей
 
-routerList.get('/', verifyMiddleware, async (req, res) => {
+// routerList.get('/', verifyMiddleware, async (req, res) => {
+routerList.get('/', async (req, res) => {
     const type = req.query.type;
     const genre = req.query.genre;
     let list = [];
