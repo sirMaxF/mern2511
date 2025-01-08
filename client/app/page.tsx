@@ -11,7 +11,9 @@ export default function Home() {
   const [genre, setGenre] = useState('');
   const [lists, setList] = useState([]);
 
-  let url = new URL('http://localhost:8800/api/lists');
+  // let url = new URL('http://localhost:8800/api/lists');
+
+  let url = new URL('http://176.109.107.57/api/lists');
 
   useEffect(() => {
     url.searchParams.set('type', type);
