@@ -15,6 +15,12 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
+// маршрут для тестирования
+app.get('/api/', (req, res) => {
+    return res.json({ 'status': 'ok' })
+});
+
+// основные маршруты
 app.use('/api/auth/', routerAuth);
 app.use('/api/users/', routerUser)
 app.use('/api/movie/', routerMovie)
